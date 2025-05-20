@@ -23,7 +23,7 @@ class AboutContent extends StatelessWidget {
       return SizedBox(
         child: Column(
           children: [
-            
+
           ],
         ),
       );
@@ -31,6 +31,12 @@ class AboutContent extends StatelessWidget {
 
   // Função auxiliar para criar um botão de navegação com rótulo e ação
   
-
+  Widget mainImage(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        image: 
+      ),
+    );
+  }
   
 }
