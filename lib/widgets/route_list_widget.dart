@@ -19,21 +19,26 @@ class RouteListWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         // Lista com separadores entre os cards de rota
-        ListView.separated(
-          shrinkWrap:
-              true, // Permite que o ListView ocupe apenas o espaço necessário
-          physics:
-              const NeverScrollableScrollPhysics(), // Desabilita o scroll (útil dentro de Column)
-          itemCount: routeEntries.length,
-          separatorBuilder:
-              (_, __) => const SizedBox(height: 12), // Espaço entre os cards
-          itemBuilder: (context, index) {
-            final routeName = routeEntries[index].key; // Ex: '/bahia'
-            final label = _formatRouteName(routeName); // Formata para "Bahia"
+        SingleChildScrollView(
+          child: Row(
+            children:
+                routeEntries.map((entry) {
+                  final routeName = entry.key;
+                  final iconData = AppRoutes.iconRoutes[routeName];
+                  final label = _formatRouteName(routeName);
 
-            // Cria um card com os botões de navegação para essa rota
-            return RouteCardWidget(routeName: routeName, label: label);
-          },
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 0.0,
+                    ), // Espaço entre os cards
+                    child: RouteCardWidget(
+                      iconData: iconData ?? Icons.help_outline,
+                      routeName: routeName,
+                      label: label,
+                    ),
+                  );
+                }).toList(),
+          ),
         ),
 
         const SizedBox(height: 24),

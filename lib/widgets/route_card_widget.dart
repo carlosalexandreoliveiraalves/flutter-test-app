@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 // Widget que representa um "card" com o nome de uma rota e botões de navegação
 class RouteCardWidget extends StatelessWidget {
+  // Icones
+  final IconData iconData;
+
   // Nome interno da rota (ex: '/bahia')
   final String routeName;
 
@@ -10,38 +13,21 @@ class RouteCardWidget extends StatelessWidget {
 
   const RouteCardWidget({
     super.key,
+    required this.iconData,
     required this.routeName,
     required this.label,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 2, // sombra do card
-      margin: const EdgeInsets.symmetric(horizontal: 8),
-      child: Padding(
-        padding: const EdgeInsets.all(12), // espaço interno do card
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, // alinha os itens à esquerda
-          children: [
-            // Título da rota no card
-            Text(label),
-
-            const SizedBox(height: 8), // espaço entre o título e os botões
-
-            // Linha com os botões de navegação
-            Wrap(
-              spacing: 8, // espaço horizontal entre botões
-              runSpacing: 8, // espaço vertical se quebrar linha
-              children: [
-                // Botão para pushNamed (navegação simples com retorno)
-                _buildButton(context, 'pushNamed', () {
-                  Navigator.pushNamed(context, routeName);
-                }),
-              ],
-            ),
-          ],
-        ),
+    return SizedBox(
+      child: Row(
+        children: [
+          // Botão para pushNamed (navegação simples com retorno)
+          _buildButton(context, iconData, label, () {
+            Navigator.pushNamed(context, routeName);
+          }),
+        ],
       ),
     );
   }
@@ -49,12 +35,25 @@ class RouteCardWidget extends StatelessWidget {
   // Função auxiliar para criar um botão de navegação com rótulo e ação
   Widget _buildButton(
     BuildContext context,
+    IconData icon,
     String label,
     VoidCallback onPressed,
   ) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      child: Text(label),
+    return Column(
+      children: [
+        ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            elevation: 4,
+            shape: const CircleBorder(),
+            padding: const EdgeInsets.all(14),
+          ),
+          child: Column(children: [Icon(icon, size: 24)]),
+        ),
+        const SizedBox(height: 4),
+        Text(label,
+        style: const TextStyle(fontSize: 15, color: Color.fromARGB(255, 3, 48, 84)),)
+      ],
     );
   }
 }

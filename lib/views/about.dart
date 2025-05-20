@@ -5,10 +5,27 @@ class AboutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
-      appBar: AppBar(title: const Text('About')),
-      body: const Center(child: Text('This is the about page!')),
+      backgroundColor: Colors.pink,
+      appBar: AppBar(title: const Text('About'), backgroundColor: const Color.fromARGB(255, 246, 240, 220),),
+      body: Column(
+        children: [
+          Container(
+            height: 200,
+            decoration: BoxDecoration(color: Colors.blue),
+            child: Row(
+              children: [Expanded(child: Container(color: Colors.green))],
+            ),
+          ),
+          Container(
+            height: 100,
+            decoration: BoxDecoration(color: Colors.blue),
+            child: Row(
+              children: [Expanded(child: Container(color: Colors.blue))],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

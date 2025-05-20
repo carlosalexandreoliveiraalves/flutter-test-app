@@ -4,19 +4,20 @@ import '../widgets/route_list_widget.dart';
 class InitialPage extends StatelessWidget {
   const InitialPage({super.key});
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Página Inicial')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
+      
+      body: Container(
+       
+        padding: const EdgeInsets.only(top: 50, right: 20, bottom: 20, left: 20),
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage("assets/images/HellenDarling.jpg"),
+          fit: BoxFit.cover)
+        ),
+       
         child: Column(
           children: const [
-            Text('Minha página inicial', style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              ),
-            ),
             SizedBox(height: 16),
             RouteListWidget(),
           ],
